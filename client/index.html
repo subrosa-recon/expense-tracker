@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Application Header -->
+        <header class="app-header">
+            <h1>Personal Expense Tracker</h1>
+            <p class="subtitle">Local &amp; Tailscale Private Mesh Network Hosting</p>
+        </header>
+
+        <!-- Summary Metrics & Category Breakdown -->
+        <section class="summary-section">
+            <div class="summary-grid">
+                <div class="card metric-card">
+                    <span class="metric-label">Total Spend (All-Time)</span>
+                    <p id="total-spend" class="metric-value">RM 0.00</p>
+                </div>
+                <div class="card metric-card">
+                    <span class="metric-label">This Month's Spend</span>
+                    <p id="monthly-spend" class="metric-value">RM 0.00</p>
+                </div>
+                <div class="card metric-card">
+                    <span class="metric-label">Top Category</span>
+                    <p id="top-category" class="metric-value">None</p>
+                </div>
+            </div>
+            <div id="category-breakdown" class="category-breakdown"></div>
+        </section>
+
+        <!-- Main Layout (Two-Column on Desktop, Stacked on Mobile) -->
+        <main class="main-layout">
+            <!-- Add Expense Form Section -->
+            <section class="card form-section">
+                <h2>Add New Expense</h2>
+                <form id="expense-form">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" placeholder="e.g., Lunch, Bus Ticket, Lab Supplies" required maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amount">Amount (RM)</label>
+                        <input type="number" id="amount" name="amount" placeholder="0.00" step="0.01" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="" disabled selected>Select category</option>
+                            <option value="Food">Food</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Academic/Supplies">Academic/Supplies</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expense-date">Date</label>
+                        <input type="date" id="expense-date" name="expense_date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notes (Optional)</label>
+                        <textarea id="notes" name="notes" rows="2" placeholder="Optional details..."></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="btn btn-primary">Add Expense</button>
+                    <p id="form-message" class="form-message" aria-live="polite"></p>
+                </form>
+            </section>
+
+            <!-- Expense History & Filter Section -->
+            <section class="card history-section">
+                <h2>Expense History</h2>
+                
+                <!-- Filter & Search Bar -->
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <input type="month" id="filter-month" aria-label="Filter by Month">
+                    </div>
+                    <div class="filter-group">
+                        <select id="filter-category" aria-label="Filter by Category">
+                            <option value="All">All Categories</option>
+                            <option value="Food">Food</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Academic/Supplies">Academic/Supplies</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="filter-group filter-search-group">
+                        <input type="search" id="filter-search" placeholder="Search title or notes..." aria-label="Search expenses">
+                    </div>
+                    <button type="button" id="clear-filters-btn" class="btn btn-secondary">Reset</button>
+                </div>
+
+                <!-- Expense History Table -->
+                <div class="table-responsive">
+                    <table id="expense-table" class="expense-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Notes</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expense-list"></tbody>
+                    </table>
+                </div>
+                <p id="empty-state" class="empty-state">No expenses recorded yet. Add your first expense to get started.</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Deferred Application Logic -->
+    <script src="app.js" defer></script>
+</body>
+</html>

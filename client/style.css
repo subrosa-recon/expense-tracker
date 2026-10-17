@@ -1,0 +1,628 @@
+/* ==========================================================================
+   Design System Tokens & CSS Variables
+   ========================================================================== */
+:root {
+    /* Brand & Accent Palette (Emerald / Indigo Finance Theme) */
+    --primary: #059669;
+    --primary-hover: #047857;
+    --primary-light: #ecfdf5;
+    --primary-border: #a7f3d0;
+
+    --secondary: #4f46e5;
+    --secondary-hover: #4338ca;
+    --secondary-light: #eef2ff;
+
+    /* Neutrals & Surfaces */
+    --bg-app: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-muted: #f1f5f9;
+    --border-color: #e2e8f0;
+    --border-focus: #059669;
+
+    /* Typography Colors */
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --text-inverse: #ffffff;
+
+    /* Semantic Status Colors */
+    --success: #10b981;
+    --success-bg: #d1fae5;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --danger-bg: #fee2e2;
+    --danger-border: #fca5a5;
+    --warning: #f59e0b;
+    --warning-bg: #fef3c7;
+
+    /* Category Badge Colors */
+    --cat-food: #ea580c;
+    --cat-food-bg: #ffedd5;
+    --cat-transport: #0284c7;
+    --cat-transport-bg: #e0f2fe;
+    --cat-utilities: #d97706;
+    --cat-utilities-bg: #fef3c7;
+    --cat-academic: #7c3aed;
+    --cat-academic-bg: #ede9fe;
+    --cat-personal: #db2777;
+    --cat-personal-bg: #fce7f3;
+    --cat-other: #475569;
+    --cat-other-bg: #f1f5f9;
+
+    /* Typography & Hierarchy */
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    /* Spacing & Radii */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-pill: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   CSS Reset & Base Rules
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    line-height: 1.5;
+    min-height: 100vh;
+    padding-bottom: 40px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Layout Containers
+   ========================================================================== */
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px;
+}
+
+/* Header */
+.app-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.app-header h1 {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.025em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.app-header .subtitle {
+    font-size: 0.925rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.app-header .subtitle::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--primary);
+}
+
+/* ==========================================================================
+   Card Component
+   ========================================================================== */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 22px;
+    transition: box-shadow var(--transition-base);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   Summary Section & Metric Cards
+   ========================================================================== */
+.summary-section {
+    margin-bottom: 28px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.metric-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 4px solid var(--primary);
+    padding: 18px 20px;
+}
+
+.metric-card:nth-child(2) {
+    border-left-color: var(--secondary);
+}
+
+.metric-card:nth-child(3) {
+    border-left-color: var(--warning);
+}
+
+.metric-label {
+    font-size: 0.825rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.metric-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+/* Category Breakdown Panel */
+.category-breakdown {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+}
+
+.category-breakdown:empty::before {
+    content: "No category breakdown data available for this period.";
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.breakdown-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-muted);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.breakdown-chip .chip-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.breakdown-chip .chip-amount {
+    font-family: var(--font-mono);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Main Layout: Form + History (Responsive 2-Column / Stack)
+   ========================================================================== */
+.main-layout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Form Section */
+.form-section h2,
+.history-section h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 18px;
+    letter-spacing: -0.015em;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+/* Form Controls (Enforcing Touch-Friendly >= 44px) */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="month"],
+input[type="search"],
+select,
+textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: var(--text-primary);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 36px;
+}
+
+textarea {
+    min-height: 72px;
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+}
+
+/* Button Components */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), transform 50ms;
+    user-select: none;
+    text-decoration: none;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--text-inverse);
+    width: 100%;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+    background-color: var(--bg-muted);
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.btn-danger {
+    background-color: var(--danger-bg);
+    color: var(--danger);
+    border-color: var(--danger-border);
+    padding: 6px 12px;
+    min-height: 34px;
+    font-size: 0.825rem;
+}
+
+.btn-danger:hover {
+    background-color: var(--danger);
+    color: var(--text-inverse);
+}
+
+/* Form Message Feedback */
+.form-message {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-top: 12px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    display: none;
+}
+
+.form-message.success {
+    display: block;
+    background-color: var(--success-bg);
+    color: var(--primary-hover);
+    border: 1px solid var(--primary-border);
+}
+
+.form-message.error {
+    display: block;
+    background-color: var(--danger-bg);
+    color: var(--danger-hover);
+    border: 1px solid var(--danger-border);
+}
+
+/* ==========================================================================
+   Filter & Search Bar
+   ========================================================================== */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 18px;
+    padding: 12px;
+    background-color: var(--bg-muted);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.filter-group {
+    flex: 1 1 140px;
+    min-width: 130px;
+}
+
+.filter-search-group {
+    flex: 2 1 200px;
+    min-width: 180px;
+}
+
+.filter-bar .btn {
+    min-height: 44px;
+    padding: 8px 16px;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Expense History Table
+   ========================================================================== */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    -webkit-overflow-scrolling: touch;
+}
+
+.expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.expense-table th {
+    background-color: var(--bg-muted);
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.expense-table td {
+    padding: 14px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    vertical-align: middle;
+}
+
+.expense-table tbody tr {
+    transition: background-color var(--transition-fast);
+}
+
+.expense-table tbody tr:hover {
+    background-color: rgba(241, 245, 249, 0.6);
+}
+
+.expense-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Table Specific Cell Styles */
+.date-cell {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.title-cell {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.notes-cell {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.amount-cell {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+    font-size: 0.95rem;
+}
+
+.action-cell {
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   Category Badges
+   ========================================================================== */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    font-size: 0.775rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.badge-food {
+    background-color: var(--cat-food-bg);
+    color: var(--cat-food);
+}
+
+.badge-transport {
+    background-color: var(--cat-transport-bg);
+    color: var(--cat-transport);
+}
+
+.badge-utilities {
+    background-color: var(--cat-utilities-bg);
+    color: var(--cat-utilities);
+}
+
+.badge-academic {
+    background-color: var(--cat-academic-bg);
+    color: var(--cat-academic);
+}
+
+.badge-personal {
+    background-color: var(--cat-personal-bg);
+    color: var(--cat-personal);
+}
+
+.badge-other {
+    background-color: var(--cat-other-bg);
+    color: var(--cat-other);
+}
+
+/* ==========================================================================
+   Empty State & Utility Classes
+   ========================================================================== */
+.empty-state {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-md);
+    margin-top: 14px;
+    background-color: var(--bg-muted);
+}
+
+/* ==========================================================================
+   Mobile Optimization (< 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 16px 12px;
+    }
+
+    .app-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group,
+    .filter-search-group {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+
+    .filter-bar .btn {
+        width: 100%;
+    }
+
+    .expense-table th,
+    .expense-table td {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+}
